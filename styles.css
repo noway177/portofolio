@@ -1,0 +1,1220 @@
+html {
+  scroll-behavior: smooth;            /* optionnel */
+  scroll-padding-top: calc(14vh - 90px);          /* mets la vraie hauteur nav+padding */
+}
+
+body {
+  background: rgb(15, 23, 42); /* rgb(15, 23, 42) */
+  color: rgb(196, 209, 236);
+  font-family: 'Satoshi', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper{
+  display:grid;
+  grid-template-columns: minmax(280px, 44vw) 1fr;
+  gap: clamp(16px, 3vw, 48px);
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 clamp(12px, 3vw, 36px);
+}
+.left-rail{
+  position: sticky;
+  top: 6vh;
+  align-self: start;
+  z-index: 3;            /* ↑ priorité d’affichage */
+}
+.right-flow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 15px;
+  padding-right: 7.7vw ; /* espace à droite du wrapper + marge interne */
+  padding-bottom: 120px;
+  scroll-padding-top: 5000px;
+
+}
+.right-flow::after{
+  content: "";
+  position: fixed;
+  bottom: 0;
+  width: 570px;         /* largeur de ta colonne de cartes */
+  height: calc(67vh - 320px);         /* hauteur du fondu */
+  pointer-events: none; /* ne bloque pas les clics */
+  z-index: 1000;
+  /* même couleur que le fond, avec fondu */
+  transform: translateX(24px); 
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 23, 42, 0) 0%,
+    rgba(15, 23, 42, 0.9) 25%,
+    rgba(15, 23, 42, 1) 40%,
+    rgba(15, 23, 42, 1) 100%
+  );
+}
+
+/* colonne droite : sous la gauche et la nav */
+
+
+header h1 {
+  position: static;       /* il suit le flux du wrapper */
+  margin-top: 4.3vh;        /* espace depuis le haut */
+  margin-left: 7.7vw;       /* petit décalage à droite */
+  font-size: 2.7rem;  /* taille qui s’adapte à l’écran */
+  cursor: pointer;
+  z-index: 5;
+}
+
+/* Style h1 quand il prend l'apparence de noway */
+header h1.style-noway {
+  position: static;       /* il reste dans le flux du wrapper */
+  margin-top: calc(4.3vh + 25.5px);      /* même hauteur que le h1 normal */
+  margin-left: 7.8vw;     /* même décalage à droite */
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(130, 151, 189);
+  letter-spacing: 0.05em;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left center;
+}
+
+
+.noway{
+  position : absolute ;
+  left: calc(7.7vw + 280px); 
+  top: calc(4.3vh + 25.5px); 
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(130, 151, 189);
+  letter-spacing: 0.05em;
+  cursor : pointer ;
+  font-style: italic;
+}
+
+/* Style noway quand il prend l'apparence du h1 */
+.noway.style-h1 {
+  position: absolute;
+  top: calc(4.3vh);
+  left: calc(7.7vw + 135px);
+  font-size: 2.7rem;
+  font-weight: bold;
+  color: rgb(196, 209, 236);
+  letter-spacing: normal;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left center;
+  font-style: italic;
+}
+
+
+.noway3 {
+  position: absolute;
+  left:calc(7.7vw + 268px); /* 5rem à droite du h1 */
+  top: calc(4.3vh + 26px); 
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(130, 151, 189);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: left 0.3s ease; /* Animation fluide */
+}
+
+/* Position décalée quand Genius est affiché */
+.noway3.shifted {
+  left:calc(7.7vw + 140px); /* Décalage vers la gauche */
+}
+
+
+
+.right-image{
+  position: absolute;                  /* ancrée à .left-rail (sticky suffit) */
+  top: clamp(10px, 2.3vh, 44px);       /* hauteur proche du h1, réactive au zoom */
+  left: calc(7.7vw + 364px );      /* bord droit de la colonne */
+  width: clamp(80px, 18vw, 200px);    /* taille fluide */
+  height: auto;
+
+  margin: 0;
+  float: none;
+  transform: none;                     /* retire scale/translateY */
+  transform-origin: initial;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .1s ease, filter .1s ease;
+}
+.right-image:hover{ transform: scale(1.02); filter: brightness(100%); }
+
+.Genius {
+  display: none;
+  position: absolute;              /* au lieu de fixed */
+  top: clamp(-15px, 2.3vh, 10px);   /* même hauteur que right-image */
+  left: calc(7.7vw + 364px );                        /* collée au bord droit de la colonne */
+  width: clamp(80px, 18vw, 200px);
+  height: auto;
+
+  margin: 0;
+  border-radius: 12px;
+  transform: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, filter 0.1s ease;
+  z-index: 2;                      /* au-dessus du fond */
+}
+
+.Genius:hover {
+  transform: scale(1.02);
+  filter: brightness(100%);
+}
+
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.35) translateY(-40%);
+    transform-origin: top left;
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(0.38) translateY(-40%);
+    transform-origin: top left;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(0.40) translateY(-40%);
+    transform-origin: top left;
+  }
+}
+
+.softeng {
+  color: rgb(196, 209, 236);
+  position: absolute;                 /* ancrée à .left-rail */
+  top: calc(4.3vh + 50px); /* même repère vertical qu'avant */
+  left: 7.7vw;   /* alignée comme ton h1 */
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.apropos {
+  color: rgb(130, 151, 189);
+  position: absolute;                 /* ancrée à .left-rail */
+  top: calc(4.3vh + 90px);
+  left: 7.7vw;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.apropos2 {
+  color: rgb(130, 151, 189);
+  position: absolute;
+  top: calc(4.3vh + 165px);
+  left: 7.7vw;
+  max-width: 550px;
+  font-size: 17px;
+}
+
+.carre-arrondi {
+  z-index: -1;
+  width: 554px;
+  height: calc(40vh - 60px);
+  border: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  background: radial-gradient(ellipse 350px 120px at center, rgb(63, 23, 75) 0%,rgb(45, 23, 62) 20%,rgb(35, 23, 52) 30%, transparent 50%);
+
+  position: absolute;
+  left: calc(7.7vw + 30px);
+  top: calc(4.3vh + 290px);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+/*.carre-arrondi:hover {
+  transform: scale(1.005);
+  border: 2px solid rgb(211, 215, 221);
+  background: rgb(10, 16, 29);
+}*/
+
+.github-image{
+  position: absolute;
+  top: calc(4.3vh + 40vh - 60px + 268px);
+  left: 7.7vw;
+  width: 40px;       /* adapte la taille ici */
+  height: auto;
+  transform: none;   /* plus de décalage dû au scale */
+  border-radius: 50%;
+  transition: filter 0.2s ease;
+  filter: brightness(70%)
+}
+.github-image:hover{
+  transform: scale(1.032);
+  filter: brightness(100%);
+}
+
+
+.linkedin-image {
+  position: absolute;
+  filter: brightness(78%);
+  width: 40px;  
+  border-radius: 50px;
+  top: calc(4.3vh + 40vh - 60px + 270px);
+  left: calc(7.7vw + 50px);
+  transition: transform 0.2s ease;
+  filter: brightness(69%)
+} 
+.linkedin-image:hover{
+  transform: scale(1.032);
+  filter: brightness(100%);
+}
+    
+
+
+
+.cv-image {
+  position: absolute;
+  filter: brightness(78%);
+  width: 40px;  
+  border-radius: 50px;
+  top: calc(4.3vh + 40vh - 60px + 271px);
+  left: calc(7.7vw + 100px);
+  transition: transform 0.2s ease;
+  filter: brightness(69%)
+}
+.cv-image:hover{
+  transform: scale(1.032);
+  filter: brightness(100%);
+}
+  
+    
+
+
+.starpicture {
+  cursor: pointer;
+  position: absolute;
+  filter: brightness(78%);
+  width: 47px;  
+  border-radius: 50px;
+  top: calc(4.3vh + 40vh - 60px + 271px);
+  left: calc(7.7vw + 148px);
+  transition: transform 0.2s ease;
+  filter: brightness(99%)
+}
+.starpicture:hover{
+  transform: scale(1.032);
+  filter: brightness(130%);
+}
+
+nav{
+  position: sticky;
+  top: 0;
+  /* ← distance au bord droit DU WRAPPER, pas du viewport */
+  margin-right: -50px;
+  z-index: 1000;
+  font-size: 18px;
+  padding-top: calc(13vh + 1rem);
+  padding-right: 0;
+  padding-bottom: 2.5rem;
+  padding-left: 0;
+  height: 50px;
+  width: 600px;
+
+  /* ton voile/fondu existant conserve le même rendu */
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0) 0px,
+    rgba(15, 23, 42, 1) 55px,
+    rgba(15, 23, 42, 1) 100%
+  );
+}
+/* structure de la liste inchangée */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 3.5rem;
+}
+
+nav ul li {
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+nav ul li:hover {
+  transform: scale(1.03);
+  z-index: 2;
+  color: rgb(255, 255, 255);
+}
+
+nav a {
+  color: rgb(196, 209, 236);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.carre-vertical {
+  width: 500px;
+  height: 150px;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  background: transparent;
+  margin: 0 0 0 0;
+  position: relative;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.carre-vertical:hover {
+  transition:  transform 0.2s ease;
+  transform: scale(1.005);
+  border: 2px solid rgb(211, 215, 221);
+  background: rgb(10, 16, 29);
+}
+
+#cursor-glow {
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(21, 135, 206, 0.3) 0%, transparent 70%); /* rgba(51, 66, 151, 0.3)*/
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.000001s ease;
+  transform-origin: center;
+}
+
+.description {
+  color: rgb(130, 151, 189);
+  top : calc(5.6vh - 90px);
+  position: relative;      /* reste dans le flux normal */
+  width: 500px;            /* même largeur que les .carre-vertical */
+  margin: 0 0 0 0; /* centre par défaut */     
+  font-size: 17px;
+  line-height: 1.5;
+  z-index: 5;
+}
+
+  
+
+
+
+.carre-titre {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(196, 209, 236);
+ 
+  margin-top: 12px;
+  margin-left: 20px;
+  letter-spacing: 0.03em;
+}
+
+.carre-date {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgb(130, 151, 189);
+  margin-top: -19px;
+  margin-left: auto;
+  margin-right: 20px;
+  text-align: right;
+  letter-spacing: 0.03em;
+}
+
+.carre-desc {
+  display: block;
+  font-size: 1rem;
+  color: rgb(130, 151, 189);
+  margin-top: 3px;
+  margin-left: 20px;
+  margin-right: 20px;
+  line-height: 1.4;
+}
+
+.carre-mini-container {
+  margin-left: 22px;
+  margin-top: 10px;
+}
+.carre-mini {
+  width: 80px;
+  height: 18px;
+  border: 0.5px solid rgb(211, 215, 221);
+  border-radius: 15px;
+  background: rgb(22, 34, 61);
+  margin: 0 3px 0 0;
+  display: inline-block;
+  vertical-align: bottom;
+  transition: transform 0.2s;
+  text-align: center;
+  line-height: 18px;
+  font-size: 0.7rem;
+  color: rgb(196, 209, 236);
+  font-weight: 550;
+  font-style: italic;
+}
+.carre-mini:hover {
+  border: 2px solid rgb(211, 215, 221);
+  background: rgb(22, 34, 61);
+
+}
+
+.carre-mini2 {
+  width: 90px;
+  height: 18px;
+  border: 0.5px solid rgb(211, 215, 221);
+  border-radius: 15px;
+  background: rgb(22, 34, 61);
+  margin: 0 3px 0 0;
+  display: inline-block;
+  vertical-align: bottom;
+  transition: transform 0.2s;
+  text-align: center;
+  line-height: 18px;
+  font-size: 0.7rem;
+  color: rgb(196, 209, 236);
+  font-weight: 550;
+  font-style: italic;
+}
+.carre-mini2:hover {
+  border: 2px solid rgb(211, 215, 221);
+  background: rgb(22, 34, 61);
+}
+
+
+.carre-arrow {
+  position: absolute;
+  bottom: 11px;
+  right: 11px;
+  width: 20px;
+  height: 20px;
+  transform: rotate(180deg);
+  transition: all 0.2s ease;
+
+}
+.carre-arrow svg {
+  width: 90%;
+  height: auto;
+  display: none;
+}
+
+.carre-vertical:hover .carre-arrow svg {
+  transform: scale(1.2);
+  display: block;
+}
+
+.night {
+  z-index: -1;
+  position: fixed;
+  top: -200px;
+  left:-200px;
+  width: 100%;
+  height: 100%;
+  transform: rotateZ(40deg);
+}
+
+.star {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(-45deg, #FFF, rgba(0, 0, 255, 0));
+  border-radius: 999px;
+  filter: drop-shadow(0 0 6px #FFF);
+  animation: tail 3s ease-in-out infinite,
+      falling 3s ease-in-out infinite;
+}
+
+@keyframes tail {
+  0% {
+      width: 0;
+  }
+
+  30% {
+      width: 100px;
+  }
+
+  100% {
+      width: 0;
+  }
+}
+
+@keyframes falling {
+  0% {
+      transform: translateX(0);
+
+  }
+
+  100% {
+    transform: translateX(800px); 
+  }
+}
+
+.star::before,
+.star::after {
+  content: "";
+  position: absolute;
+  top: calc(50%-1px);
+  right: 0;
+  height: 2px;
+  background: linear-gradient(-45deg, rgba(0, 0, 255, 0), #FFF, rgba(0, 0, 255, 0));
+  border-radius: 100%;
+  transform: translateX(50%) rotateZ(45deg);
+  animation: shining 3s ease-in-out infinite
+}
+
+@keyframes shining {
+  0% {
+      width: 0;
+  }
+
+  50% {
+      width: 15px;
+  }
+
+  100% {
+      width: 0;
+  }
+}
+
+.star::after {
+  transform: translateX(50%) rotateZ(-45deg);
+}
+
+.star:nth-child(1) {
+  top: calc(50% - 100px);
+  left: calc(50% - 250px);
+  animation-delay: 1s;
+}
+
+.star:nth-child(1)::before,
+.star:nth-child(1)::after {
+  animation-delay: 1s;
+}
+
+.star:nth-child(2) {
+  top: calc(50% - 75px);
+  left: calc(50% - 225px);
+  animation-delay: 1.1s;
+}
+
+.star:nth-child(2)::before,
+.star:nth-child(2)::after {
+  animation-delay: 1.1s;
+}
+
+.star:nth-child(3) {
+  top: calc(50% - 50px);
+  left: calc(50% - 200px);
+  animation-delay: 1.2s;
+}
+
+.star:nth-child(3)::before,
+.star:nth-child(3)::after {
+  animation-delay: 1.2s;
+}
+
+.star:nth-child(4) {
+  top: calc(50% - 25px);
+  left: calc(50% - 175px);
+  animation-delay: 1.3s;
+}
+
+.star:nth-child(4)::before,
+.star:nth-child(4)::after {
+  animation-delay: 1.3s;
+}
+
+.star:nth-child(5) {
+  top: calc(50% - 0px);
+  left: calc(50% - 150px);
+  animation-delay: 1.4s;
+}
+
+.star:nth-child(5)::before,
+.star:nth-child(5)::after {
+  animation-delay: 1.4s;
+}
+
+.star:nth-child(6) {
+  top: calc(50% - -25px);
+  left: calc(50% - 175px);
+  animation-delay: 1.5s;
+}
+
+.star:nth-child(6)::before,
+.star:nth-child(6)::after {
+  animation-delay: 1.5s;
+}
+
+.star:nth-child(7) {
+  top: calc(50% - -50px);
+  left: calc(50% - 200px);
+  animation-delay: 1.6s;
+}
+
+.star:nth-child(7)::before,
+.star:nth-child(7)::after {
+  animation-delay: 1.6s;
+}
+
+.star:nth-child(8) {
+  top: calc(50% - -75px);
+  left: calc(50% - 225px);
+  animation-delay: 1.7s;
+}
+
+.star:nth-child(8)::before,
+.star:nth-child(8)::after {
+  animation-delay: 1.7s;
+}
+
+.star:nth-child(9) {
+  top: calc(50% - -100px);
+  left: calc(50% - 250px);
+  animation-delay: 1.8s;
+}
+
+.star:nth-child(9)::before,
+.star:nth-child(9)::after {
+  animation-delay: 1.8s;
+}
+
+.star:nth-child(10) {
+  top: calc(50% - -125px);
+  left: calc(50% - 250px);
+  animation-delay: 1.8s;
+}
+
+.star:nth-child(9)::before,
+.star:nth-child(9)::after {
+  animation-delay: 1.8s;
+}
+
+
+
+#mon-bouton {
+    position: fixed;
+    top: 604px;
+    left: 350px;
+    font-size: 16px;
+    background-color: rgb(15, 23, 42);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 34px;
+  height:34px;
+}
+
+#mon-bouton:hover {
+  background-color:rgb(15, 23, 42);
+}
+
+#star1, #star2, #star3, #star4, #star5,#star6,#star7,#star8,#star9,#star10 {
+  display: none;
+}
+#mon-bouton img {
+  width: 100%;
+  height: 100%;
+}
+
+.deroulant {
+  scroll-margin-top: 160px;
+}
+
+.emoji-genie {
+  z-index: 10000;
+  text-decoration: none; /* pour enlever le soulignement */
+  font-size: 1rem;       /* adapte la taille si besoin */
+  display: inline-block;
+  transition: transform 0.2s ease;
+  cursor : pointer
+}
+
+.emoji-genie:hover {
+  transform: scale(1.2);  /* un petit effet sympa au survol */
+}
+.Barcelone {
+  z-index: 10000;
+  display: inline-block;
+  transition: transform 0.5s ease;
+  cursor : pointer
+}
+
+.Barcelone:hover {
+  background: repeating-linear-gradient(
+  to right,
+  #2a1984 0%, #760a23 20%, #2a1984 40%, #760a23 60%, #2a1984 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.05);
+  font-weight: 900;
+}
+
+::selection {
+  background-color: #a5b8ca; /* gris clair */
+  color: rgb(255, 255, 255);              /* couleur du texte sélectionné */
+}
+
+/* Animation d'entrée pour les deux éléments */
+header h1, .noway {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: left center;
+}
+
+
+/* 1) Gouttière latérale unifiée */
+:root { --side-gutter: 7.7vw; }
+
+/* 2) Réapplique la gouttière via la variable pour écraser les valeurs hardcodées */
+header h1,
+header h1.style-noway { margin-left: var(--side-gutter); }
+
+.noway { left: calc(var(--side-gutter) + 280px); }
+.noway3 { left: calc(var(--side-gutter) + 268px); }
+
+.noway.style-h1 { left: calc(var(--side-gutter) + 135px); }
+.noway3.shifted { left: calc(var(--side-gutter) + 140px); }
+
+.softeng,
+.apropos,
+.apropos2,
+.carre-arrondi{ left: var(--side-gutter); }
+
+.right-image,
+.Genius { left: calc(var(--side-gutter) + 364px); }
+
+/* le flux de droite utilisera la même gouttière à droite */
+.right-flow { padding-right: var(--side-gutter); }
+
+.github-image{ left: var(--side-gutter); }
+.linkedin-image{ left: calc(var(--side-gutter) + 50px); }
+.cv-image{ left: calc(var(--side-gutter) + 100px); }
+.starpicture{ left: calc(var(--side-gutter) + 148px); }
+/* 3) Dès que le viewport < 1600px, on serre de façon symétrique */
+@media (max-width: 1400px) {
+  :root { --side-gutter: 4vw; }              /* ← ajuste cette valeur si besoin */
+
+  .wrapper {
+    /* réduit les bords du wrapper des deux côtés */
+    padding-inline: clamp(12px, 2vw, 24px);
+  }
+
+  .right-flow {
+    padding-right: var(--side-gutter);
+  }
+
+  /* si ton voile dépend d’un translateX fixe, neutralise-le ici */
+  .right-flow::after {
+    width: clamp(700px, 36vw, 1000px);        /* optionnel, pour rester cohérent */
+  }
+}
+/* ≤ 1200px : on réduit uniquement les marges/gouttières */
+/* ≤ 1200px : même logique que le 1400, mais marges un peu plus serrées */
+@media (max-width: 1250px) {
+  :root { --side-gutter: 1vw; }  /* était 4vw */
+
+  .wrapper {
+    padding-inline: clamp(12px, 2vw, 24px); /* était 2vw */
+  }
+
+  .right-flow {
+    padding-right: var(--side-gutter);
+  }
+
+  .right-flow::after {
+    width: clamp(550px, 36vw, 570px); /* inchangé (pas une marge) */
+  }
+}
+
+
+
+
+/* Écran plein dédié au message (masqué par défaut) */
+/* Masqué par défaut */
+#mobile-warning {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgb(15, 23, 42);
+  color: rgb(196, 209, 236);
+  text-align: center;
+  padding: 24px;
+}
+
+/* Sous 900px : ne montrer QUE l’avertissement */
+@media (max-width: 1175px) {
+  /* cache tout sauf l’avertissement */
+  body > *:not(#mobile-warning) { display: none !important; }
+
+  #mobile-warning {
+    display: grid !important;   /* visible uniquement ici */
+    place-items: center;
+    font: 500 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  }
+
+  html, body { overflow: hidden; }
+}
+
+
+
+/* ===== Harmonisation verticale par paliers ===== */
+/* Palier par défaut (≥ 1200px) */
+:root { --top-offset: 4.3vh; }
+
+/* ≤ 1200px : premier palier */
+@media (max-height: 800px) {
+  :root { --top-offset: 2.5vh; }
+}
+
+/* ≤ 900px : second palier */
+@media (max-width: 600px) {
+  :root { --top-offset: 1.7vh; }
+}
+
+/* Overrides : on branche les éléments sur --top-offset */
+header h1 { margin-top: var(--top-offset); }
+
+header h1.style-noway {
+  margin-top: calc(var(--top-offset) + 25.5px);
+}
+
+.noway {
+  top: calc(var(--top-offset) + 25.5px);
+}
+
+.noway.style-h1 {
+  top: var(--top-offset);
+}
+
+.noway3 {
+  top: calc(var(--top-offset) + 26px);
+}
+
+.noway3.shifted
+{
+  left: calc(var(--side-gutter) + 140px); /* inchangé */
+}
+.softeng {
+  top: calc(var(--top-offset) + 50px);
+}
+
+.apropos {
+  top: calc(var(--top-offset) + 90px);
+}
+
+.apropos2 {
+  top: calc(var(--top-offset) + 165px);
+}
+
+.carre-arrondi {
+  top: calc(var(--top-offset) + 250px);
+}
+
+.Genius {
+  top: calc(var(--top-offset) - 15px);
+}
+
+.right-image {
+  top: calc(var(--top-offset) - 10px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 2) Ne PAS scaler le canvas des étoiles */
+canvas:not(#stars) {
+  transform: scale(0.15);              /* 0.25 parait lisible; ajuste si besoin */
+  max-width: calc(90% * 4);
+  width: calc(310px * 4);
+}
+
+/* 3) Remets les wraps au-dessus des étoiles */
+.wrap {
+  position: fixed;
+  bottom: 2vw;
+  left: 50vh;
+  height: 20vh;
+  width: 20vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;   
+  transform: scale(0.7);         
+  z-index :  4    /* IMPORTANT */
+}
+
+/* 4) Les étoiles doivent être derrière, mais dans la même pile */
+#stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;                 /* au lieu de -1 */
+  background: transparent;
+  pointer-events: none;
+}
+
+
+body {
+  /*background-color: #000;  /* fond noir neutre */
+  margin: 0;
+}
+
+canvas:not(#stars) {
+  transform: scale(0.15);
+}
+
+.wrap--second {
+  top: 30vw; 
+  left: 50vw;   /* décale la “copie” sur la droite */
+  z-index: 1;
+  transform: scale(0.5);
+  z-index :  0
+}
+
+.wrap--p3 { left: -2vw;  top:  5vh;transform: scale(0.4);z-index: 1; }
+.wrap--p4 { left:  70vw;  top: 20vh; ;transform: scale(0.7);}
+.wrap--p5 { left: 80vw;  top: 70vh;transform: scale(0.5); }
+
+
+
+
+
+
+
+
+/* === Carrousel texte dans .carre-arrondi (version stable) === */
+#about-carousel{
+  overflow: hidden;                 /* CLIP */
+  padding: 0;
+  display: block;                   /* plus de grid */
+  /* garde tes styles .carre-arrondi hérités (bord, fond, radius, etc.) */
+  box-sizing: content-box;
+}
+
+#about-carousel .nc-track{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  gap: 0;                           /* aucun espacement parasite */
+  transition: transform 320ms ease;
+  will-change: transform;
+}
+
+#about-carousel .nc-slide{
+  flex: 0 0 100%;                   /* 1 slide = 100% du viewport du carrousel */
+  height: 100%;
+  box-sizing: border-box;           /* padding inclus dans les 100% */
+  padding: 22px 35px;
+  color: #cfd8e3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+#about-carousel .nc-slide{ justify-content: flex-start }
+
+#about-carousel .nc-slide h3{
+  margin: 0 0px 4px 0px ;
+  font-weight: 600;
+  color: #e6edf5;
+  font-size: 1.02rem;
+}
+#about-carousel .nc-slide p{
+  line-height: 1.55;
+  color: #b6c2d2;
+}
+
+#about-carousel .nc-slide p {
+  position: absolute;
+  left: 0; right: 0; bottom: 10%;/* décale vers le bas */
+  text-align: center;     /* centre horizontalement */
+  font-size: 0.8rem;     /* réduit légèrement la taille */
+  font-style: italic;     /* italique */
+}
+
+/* flèches : ABSOLUTE pour ne pas affecter la largeur de la piste */
+#about-carousel .nc-nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;            /* plus de fond */
+  border: none;                /* plus de cercle */
+  color: #e6edf5;              /* couleur claire */
+  font-size: 3rem;           /* taille plus grande */
+  font-weight: 500;            /* plus épaisse */
+  cursor: pointer;
+  line-height: 1;
+  transition: transform .15s ease, color .15s ease;
+  z-index: 4;
+}
+#about-carousel .nc-nav:hover{
+  transform: translateY(-50%) scale(1.15);
+  color: rgb(255,255,255);     /* plus lumineux au survol */
+}
+#about-carousel .nc-prev{ left: -7px; }
+#about-carousel .nc-next{ right: -7px; }
+
+
+/* bullets */
+#about-carousel .nc-dots{
+  position: absolute;
+  left: 0; right: 0; bottom: 8px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: none;              /* décoratif */
+}
+#about-carousel .nc-dot{
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(200,220,255,0.28);
+  transition: transform .15s ease, background .15s ease;
+}
+#about-carousel .nc-dot.is-active{
+  transform: scale(1.3);
+  background: rgba(230,237,245,0.9);
+}
+
+/* hover visuel (tu avais déjà cet effet) */
+#about-carousel:hover{
+  border-color: rgb(211, 215, 221);
+}
+
+
+
+
+
+
+
+
+
+.wave-line {
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+}
+
+.wave-line svg {
+  width: 200%;                /* deux fois plus large pour animer */
+  height: 100%;
+  fill: none;
+  stroke: #8ab4f8;            /* couleur du trait */
+  stroke-width: 2.5;
+  animation: wave-move 3s linear infinite;
+}
+
+@keyframes wave-move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+
+
+#about-carousel .nc-slide {
+  position: relative; /* nécessaire pour le positionnement interne */
+}
+
+#about-carousel .nc-slide blockquote {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-style: italic;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #80a7d4;
+  margin: 0; /* désactive le margin-top existant */
+  width: 80%; /* facultatif, évite que le texte touche les bords */
+}
+
+
+#about-carousel .nc-slide {
+  position: relative; /* nécessaire */
+}
+
+#about-carousel .nc-slide .wave-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;    /* ajuste selon le rendu souhaité */
+  height: 40px;
+  overflow: hidden;
+}
+
+
+#about-carousel .nc-slide {
+  position: relative; /* permet de positionner les éléments internes */
+}
+
+#about-carousel .nc-slide .naval {
+  position: absolute;       /* position libre dans la slide */
+  top: 50%;                 /* position verticale : milieu */
+  left: 50%;                /* position horizontale : milieu */
+  transform: translate(-50%, -50%); /* centre exact */
+  width: calc(7vw - 30px);             /* taille de l’image */
+  height: auto;             /* garde les proportions */
+  border-radius: 10px;      /* arrondit légèrement les bords */
+  filter: brightness(90%);  /* optionnel : légère atténuation */
+  transition: transform 0.2s ease;
+}
+
+
+
+#about-carousel .nc-slide .naval:hover {
+  transform: translate(-50%, -50%) scale(1.05); /* léger zoom au survol */
+}
+
+
+
+#about-carousel .nc-slide .fusee {
+  position: absolute;       /* position libre dans la slide */
+  top: 50%;                 /* position verticale : milieu */
+  left: 50%;                /* position horizontale : milieu */
+  transform: translate(-50%, -50%); /* centre exact */
+  width: calc(9vw - 30px);             /* taille de l’image */
+  height: auto;             /* garde les proportions */
+  border-radius: 10px;      /* arrondit légèrement les bords */
+  filter: brightness(90%);  /* optionnel : légère atténuation */
+  transition: transform 0.2s ease;
+}
+
+
+
+#about-carousel .nc-slide .fusee:hover {
+  transform: translate(-50%, -50%) scale(1.05); /* léger zoom au survol */
+}
+
+
+/* Texte caché par défaut */
+.hover-text {
+  position: absolute;
+  top: 20px; /* Ajuste la position selon tes préférences */
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(196, 209, 236); /* couleur du texte */
+  font-size: 0.9rem;
+  opacity: 0; /* Le texte est invisible par défaut */
+  transition: opacity 0.3s ease-in-out; /* Animation douce pour l'apparition */
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Au survol de l'élément .carre-arrondi, le texte devient visible */
+.carre-arrondi:hover .hover-text {
+  opacity: 1; /* Le texte devient visible */
+}
+
+
+

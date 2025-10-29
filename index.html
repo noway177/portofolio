@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noé Cochet</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+  <link rel="icon" href="images/N.png" type="N/png">
+</head>
+
+
+<body>
+
+  <canvas id="stars"></canvas>
+  <!-- Le pen a DEUX canvas -->
+  <div class="wrap">
+    <canvas id="cv1" width="500" height="500"></canvas>
+  </div>
+  <div class="wrap">
+    <canvas id="cv2" width="500" height="500"></canvas>
+  </div>
+  <div class="wrap wrap--second">
+    <canvas id="cv3" width="500" height="500"></canvas>
+  </div>
+  <div class="wrap wrap--p3"><canvas id="cv4" width="500" height="500"></canvas></div>
+  <div class="wrap wrap--p4"><canvas id="cv5" width="500" height="500"></canvas></div>
+  <div class="wrap wrap--p5"><canvas id="cv6" width="500" height="500"></canvas></div>
+  <!-- Charge le JS APRÈS les canvas OU avec defer -->
+  <script src="script.js" defer></script>
+
+
+
+
+
+  <div class="wrapper">
+  <aside class="left-rail">
+  <header>
+    <h1 class="Noé" id="Noé">Noé Cochet</h1>
+    <a class ="noway noway2" id="noway">&nbsp;&nbsp;&nbsp;noway</a>
+    <a class="noway3"><b>/</b></a> 
+
+  </header>
+    <img src="images/photo.png" alt="Photo" class="right-image mobile-partie">
+    <img src="images/Genius.png" alt="Photo2" class="Genius">
+    <a href="https://github.com/noway177" target="_blank" rel="noopener noreferrer"><img src="images/github.png" alt="github" class="github-image"></a>
+    <a href="https://www.linkedin.com/in/no%C3%A9-cochet-716602292/" target="_blank" rel="noopener noreferrer"><img src="images/linkedin.png" alt="linkedin" class="linkedin-image"></a>
+    <a href="CV.pdf" target="_blank" rel="noopener noreferrer"><img src="images/CV.png" alt="CV" class="cv-image"></a>
+    <img src="images/star.png" class="starpicture" id="starpicture"> 
+    <h2 class="softeng">Etudiant en informatique</h2>
+    <p class="apropos"> 
+      Passionné par l'informatique et les nouvelles <br> 
+      technologies, je suis<b> l'enchanteur</b>
+      <a id="emoji-genie" class="emoji-genie">🧞‍♂️</a> 
+      qui <br> révèle la magie des algorithmes.</p>
+    <p class="apropos2"> 
+       Animé par l'innovation venez découvrir ici mes expériences, mes projets et bien plus !</p>
+    <div class="carre-arrondi" id="about-carousel" aria-label="Carrousel de présentation" role="region">
+  <button class="nc-nav nc-prev" aria-label="Précédent">
+  <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 6 L9 12 L15 18" />
+  </svg>
+</button>
+  
+  <div class="nc-track" role="list">
+    <!-- Slide 1 : Philosophie -->
+    <article class="nc-slide" role="listitem" aria-roledescription="slide">
+      <p>Naval Ravikant</p>
+      <img src="images/naval.png" alt="PhotoNaval" class="naval">
+    </article>
+
+    <!-- Slide 2 : Ce que je construis -->
+    <article class="nc-slide" role="listitem" aria-roledescription="slide">
+      <blockquote>« The best way to predict the future is to invent it. » <br>Alan Kay</blockquote>
+    </article>
+
+    <!-- Slide 3 : Portrait rapide -->
+    <article class="nc-slide" role="listitem" aria-roledescription="slide">
+      <div class="wave-line" data-tip="Transformers (attention & SOTA)">
+        <svg viewBox="0 0 500 60" preserveAspectRatio="none">
+          <path d="M0 30 Q 25 5 50 30 T 100 30 T 150 30 T 200 30 T 250 30 T 300 30 T 350 30 T 400 30 T 450 30 T 500 30" />
+        </svg>
+      </div>
+
+      <p>Les ondes, un phénomene fascinant</p>
+
+
+    </article>
+
+    <!-- Slide 4 : À venir -->
+    <article class="nc-slide" role="listitem" aria-roledescription="slide">
+      <img src="images/fusee.png" alt="PhotoFusee" class="fusee">
+      <p>Un rêve d'enfant jamais oublié</p>
+    </article>
+  </div>
+  
+  <button class="nc-nav nc-next" aria-label="Suivant">
+  <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 6 L15 12 L9 18" />
+  </svg>
+</button>
+  <div class="nc-dots" aria-hidden="true"></div>
+
+<div class="hover-text">
+Découvrez mes Influences et aspirations.
+</div>
+
+</div>
+
+
+
+  </aside>
+  
+  <main class="right-flow">
+      <nav>
+      <ul>
+        <li><a href="#A propos"><b>À propos</b></a></li>
+        <li><a href="#Expériences"><b>Expériences</b></a></li>
+        <li><a href="#Formations"><b>Formations</b></a></li>
+        <li><a href="#Projets"><b>Projets</b></a></li>
+      </ul>
+      </nav>
+       <p class="description mobile-partie deroulant" id="A propos" style="text-align: justify;">
+        Hello, moi c'est <b>Noé</b>, un étudiant passionné par <b>l'intelligence artifielle</b>, la robotique et les systèmés intelligents. Je suis actuellement en double diplôme entre l'Université Laval (master en  informatique, IA) et l'ECAM Rennes (école d'ingénieurs). <br><br>
+         J'apprends à concevoir des outils mêlant IA, accessibilité et performance,  j'adore explorer des chemins inconnus et <b>allez à la découverte de ce que personne n'a encore fait</b> <br><br> 
+         Je pense que la technologie peut et doit être mis au service de l'humain pour un monde meilleur. Réduire les <b>inégalités</b> et abolir les <b>injustices</b> sont deux de mes principes fondamentaux<br><br>
+          Je suis passionné par la Tech, la philosophie (principalement la mienne) mais aussi et surtout par le football, je ne manque jamais un match du meilleur club du monde : le <a id = "Barcelone" class="Barcelone">FC Barcelone</a>.
+    <br><br><br><br><br><br>
+    </p> 
+      <div class="carre-vertical deroulant" id="Expériences">
+        <a href="https://www.g2s-groupama-technologies.fr/" target="_blank" style="text-decoration: none; color: inherit;">
+        <span class="carre-titre">Stagiaire Software Ingénieur | Groupama</span>
+        <span class="carre-date">06/25 - 09/25</span>
+        <span class="carre-desc"> - Mise en place de serveur MCP et d'API pour connecter un agent IA à un assistant de code pour l'entreprise <br> - Optimisation des algorithmes de l'IA développée par l'entreprise</span>
+        <div class="carre-mini-container">
+          <div class="carre-mini">Python</div>
+          <div class="carre-mini">FastAPI</div>
+          <div class="carre-mini">PyTorch</div>
+          <div class="carre-mini">Fast MCP</div>
+        </div>
+        <div class="carre-arrow"> 
+          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path d="
+              M2 0 L4 0
+              M0 2 L0 4
+              M2 6 L6 2 Q8 0 4 0
+              M2 6 Q0 8 0 4
+              M2 0 Q0 0 0 2
+              V4
+              M4 0 L2 0 L0 4
+              M2 6 L0 4 L4 0
+            " fill="rgb(211, 215, 221)" />
+          </svg>   
+        </div>
+      </div>
+    </a>
+    
+      <div class="carre-vertical">
+        <a href="https://www.cours-ado.com/" target="_blank" style="text-decoration: none; color: inherit;">
+        <span class="carre-titre">Professeur de mathématiques | CoursAdo</span>
+        <span class="carre-date">08/24 - 06/25</span>
+        <span class="carre-desc"> - Cours particulier de spécialité mathématique et physique à des lycéens  <br> - Amélioration des resultats de tout les éléves suivis </span>
+        <div class="carre-mini-container">
+          <div class="carre-mini">Pédagogie</div>
+        </div>
+        <div class="carre-arrow"> 
+          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path d="
+              M2 0 L4 0
+              M0 2 L0 4
+              M2 6 L6 2 Q8 0 4 0
+              M2 6 Q0 8 0 4
+              M2 0 Q0 0 0 2
+              V4
+              M4 0 L2 0 L0 4
+              M2 6 L0 4 L4 0
+            " fill="rgb(211, 215, 221)" />
+          </svg>   
+        </div>
+      </div>
+    </a>
+    
+      <div class="carre-vertical">
+        <a href="https://www.hopeagency.org/" target="_blank" style="text-decoration: none; color: inherit;">
+        <span class="carre-titre">Professeur d'anglais | Hope agency</span>
+        <span class="carre-date">06/24 - 09/24</span>
+        <span class="carre-desc"> - Mission humanitaire au Cambodge <br> - Organisation et animation de cours d'anglais pour des éléves de 10 à 17 ans  </span>
+        <div class="carre-mini-container">
+          <div class="carre-mini">Pédagogie</div>
+          <div class="carre-mini">Anglais</div>
+        </div>
+        <div class="carre-arrow"> 
+          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path d="
+              M2 0 L4 0
+              M0 2 L0 4
+              M2 6 L6 2 Q8 0 4 0
+              M2 6 Q0 8 0 4
+              M2 0 Q0 0 0 2
+              V4
+              M4 0 L2 0 L0 4
+              M2 6 L0 4 L4 0
+            " fill="rgb(211, 215, 221)" />
+          </svg>   
+        </div>
+      </div>
+    </a>
+    <br><br><br><br><br><br>
+    
+      <div class="carre-vertical deroulant"  id="Formations">
+        <a href="https://www.ulaval.ca/" target="_blank" style="text-decoration: none; color: inherit;">
+        <span class="carre-titre">Maitrise en informatique | Université Laval</span>
+        <span class="carre-date">09/25 - 06/27</span>
+        <span class="carre-desc">- Maitrise en Informatique , double diplôme au Canada <br> - Cours suivis : NLP, Machine Learning, Robotique Mobile, Algorithmes  </span>
+        <div class="carre-mini-container">
+          <div class="carre-mini">IA</div>
+          <div class="carre-mini">Informatique</div>
+          <div class="carre-mini">Robotique</div>
+          <div class="carre-mini2">Mathématiques</div>
+        </div>
+        <div class="carre-arrow"> 
+          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path d="
+              M2 0 L4 0
+              M0 2 L0 4
+              M2 6 L6 2 Q8 0 4 0
+              M2 6 Q0 8 0 4
+              M2 0 Q0 0 0 2
+              V4
+              M4 0 L2 0 L0 4
+              M2 6 L0 4 L4 0
+            " fill="rgb(211, 215, 221)" />
+          </svg>   
+        </div>
+      </div>
+    </a>
+    
+      <div class="carre-vertical">
+        <a href="https://www.ecam-rennes.fr/" target="_blank" style="text-decoration: none; color: inherit;">
+        <span class="carre-titre">Ecole d'ingenieur | ECAM Rennes </span>
+        <span class="carre-date">09/21 - 06/26</span>
+        <span class="carre-desc">- Ecole d'ingenieur et classe prépa intégrée (résultat : top5%)<br> - Job étudiant 20h/semaine en plus des cours <br> - Trésorier BDE (Budget : 100k)</span>
+        <div class="carre-mini-container">
+          <div class="carre-mini">Informatique</div>
+          <div class="carre-mini">Robotique</div>
+          <div class="carre-mini">Electronique </div>
+          <div class="carre-mini2">Mathématiques </div>
+          <div class="carre-mini">Signal</div>
+        </div>
+        <div class="carre-arrow"> 
+          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path d="
+              M2 0 L4 0
+              M0 2 L0 4
+              M2 6 L6 2 Q8 0 4 0
+              M2 6 Q0 8 0 4
+              M2 0 Q0 0 0 2
+              V4
+              M4 0 L2 0 L0 4
+              M2 6 L0 4 L4 0
+            " fill="rgb(211, 215, 221)" />
+          </svg>   
+        </div>
+      </div>
+    </a>
+    
+      <div class="carre-vertical">
+        <a href="https://www.lycee-lamennais.fr/" target="_blank" style="text-decoration: none; color: inherit;"></a>
+        <span class="carre-titre">Lycée | Lycée La Mennais</span>
+        <span class="carre-date">09/18 - 06/21</span>
+        <span class="carre-desc">- Baccalauréat général (résultat : mention très bien) <br> - Mathématique/physique/option mathématique experte <br> - Concours général des lycées en philosophie  </span>
+        <div class="carre-mini-container">
+          <div class="carre-mini2">Mathématiques</div>
+          <div class="carre-mini">Physique</div>
+          <div class="carre-mini">Informatique</div>
+          <div class="carre-mini">Philosophie</div>
+        </div>
+        <div class="carre-arrow"> 
+          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path d="
+              M2 0 L4 0
+              M0 2 L0 4
+              M2 6 L6 2 Q8 0 4 0
+              M2 6 Q0 8 0 4
+              M2 0 Q0 0 0 2
+              V4
+              M4 0 L2 0 L0 4
+              M2 6 L0 4 L4 0
+            " fill="rgb(211, 215, 221)" />
+          </svg>   
+        </div>
+      </div>
+    </a>
+    <br><br><br><br><br><br>
+    <div class="section-separator"></div>
+      <div class="carre-vertical deroulant" id="Projets" data-aos="fade-up"
+      data-aos-anchor-placement="top-bottom">
+        <a href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7339274014172884994?commentUrn=urn%3Ali%3Acomment%3A%28ugcPost%3A7339274014172884994%2C7339293247845924865%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287339293247845924865%2Curn%3Ali%3AugcPost%3A7339274014172884994%29" target="_blank" style="text-decoration: none; color: inherit;">
+        <span class="carre-titre">ECAMBOT</span>
+        <span class="carre-date">06/25</span>
+        <span class="carre-desc"> - 1er prix concours de robotique par équipe réunissant une centaine d'étudiants, course de robot (from scratch) dirigé par le mouvement réalisant des tâches précises</span>
+        <div class="carre-mini-container">
+          <div class="carre-mini">Python</div>
+          <div class="carre-mini">C++</div>
+          <div class="carre-mini">OpenCV</div>
+          <div class="carre-mini">Electronique</div>
+          <div class="carre-mini">Mécanique</div>
+        </div>
+        <div class="carre-arrow"> 
+          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path d="
+              M2 0 L4 0
+              M0 2 L0 4
+              M2 6 L6 2 Q8 0 4 0
+              M2 6 Q0 8 0 4
+              M2 0 Q0 0 0 2
+              V4
+              M4 0 L2 0 L0 4
+              M2 6 L0 4 L4 0
+            " fill="rgb(211, 215, 221)" />
+          </svg>   
+        </div>
+      </div>
+    </a>
+      <div class="carre-vertical">
+        <a href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7294715439165628416?commentUrn=urn%3Ali%3Acomment%3A%28ugcPost%3A7294715439165628416%2C7294717987016626177%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287294717987016626177%2Curn%3Ali%3AugcPost%3A7294715439165628416%29" target="_blank" style="text-decoration: none; color: inherit;">
+        <span class="carre-titre">Créathon</span>
+        <span class="carre-date">03/25</span>
+        <span class="carre-desc"> - 1er prix concours d'innovation par équipe réunissant plus de 70 étudiants, création d'une interface traductrice de PDF et réalité augmentée</span>
+        <div class="carre-mini-container">
+          <div class="carre-mini">Python</div>
+          <div class="carre-mini">HTML</div>
+          <div class="carre-mini">CSS</div>
+        </div>
+        <div class="carre-arrow"> 
+          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path d="
+              M2 0 L4 0
+              M0 2 L0 4
+              M2 6 L6 2 Q8 0 4 0
+              M2 6 Q0 8 0 4
+              M2 0 Q0 0 0 2
+              V4
+              M4 0 L2 0 L0 4
+              M2 6 L0 4 L4 0
+            " fill="rgb(211, 215, 221)" />
+          </svg>   
+        </div>
+      </div>
+    </a>
+    <a href="#" target="_blank" style="text-decoration: none; color: inherit;">
+      <div class="carre-vertical" >
+        <span class="carre-titre">PRTE - opendata</span>
+        <span class="carre-date">12/25</span>
+        <span class="carre-desc">- Site web exploitant et présentant judicieusement les opendata de la ville Rennes. <br> -Chatbot IA exploitant et traitants les datas utilisés  </span>
+        <div class="carre-mini-container">
+          <div class="carre-mini">Python</div>
+          <div class="carre-mini">HTML</div>
+          <div class="carre-mini">CSS</div>
+          <div class="carre-mini">JavaScript</div>
+          <div class="carre-mini">API OpenAI</div>
+        </div>
+        <div class="carre-arrow"> 
+          <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path d="
+              M2 0 L4 0
+              M0 2 L0 4
+              M2 6 L6 2 Q8 0 4 0
+              M2 6 Q0 8 0 4
+              M2 0 Q0 0 0 2
+              V4
+              M4 0 L2 0 L0 4
+              M2 6 L0 4 L4 0
+            " fill="rgb(211, 215, 221)" />
+          </svg>   
+        </div>
+      </div>
+    </a>
+    <br><br><br><br><br><br>
+    <div class="night">
+      <div class="star star1" id = star1></div>
+      <div class="star star2" id = star2></div>  
+      <div class="star star3" id = star3></div>
+      <div class="star star4" id = star4></div>
+      <div class="star star5" id = star5></div>
+      <div class="star star6" id = star6></div>
+      <div class="star star7" id = star7></div>  
+      <div class="star star8" id = star8></div>
+      <div class="star star9" id = star9></div>
+      <div class="star star10" id = star10></div>
+  </div>
+  </main>
+  <button id="mon-bouton"></button>
+  
+
+<div id="cursor-glow"></div>
+<script src="https://unpkg.com/scrollreveal"></script>
+<script src="script.js"></script>
+
+
+
+</div>
+</body>
+<div id="mobile-warning" role="status" aria-live="polite">
+  Mobile version in development — open on desktop for the full experience.
+</div>
+</html> 
