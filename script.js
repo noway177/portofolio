@@ -482,7 +482,7 @@ function draw() {
   canvas3.style.filter = `contrast(15) blur(1px) hue-rotate(${Math.floor(hueT + 120)}deg)`;
   hueT = (hueT+2) % 360;
 
-  setTimeout(() => requestAnimationFrame(draw), 150); // ~10 FPS
+  setTimeout(() => requestAnimationFrame(draw), 500); // ~10 FPS
 }
 
 draw();
