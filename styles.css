@@ -231,8 +231,8 @@ header h1 {
   filter: brightness(69%)
 }
 .cv-image:hover{
-  transform: scale(1.032);
-  filter: brightness(100%);
+  transform: scale(1.04);
+  filter: brightness(130%);
 }
   
     
@@ -250,8 +250,8 @@ header h1 {
   filter: brightness(99%)
 }
 .starpicture:hover{
-  transform: scale(1.032);
-  filter: brightness(130%);
+  transform: scale(1.045);
+  filter: brightness(250%);
 }
 
 nav{
