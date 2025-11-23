@@ -120,35 +120,6 @@ function swapStyles() {
   }
 }
 
-// Event listener pour noway - seulement quand il est en petit
-document.getElementById('noway').addEventListener('click', function() {
-  if (!stylesSwapped) { // Seulement si les styles ne sont pas échangés
-    handleClick(); // Change l'image
-    swapStyles(); // Échange les styles
-  }
-});
-
-// Event listener pour h1 - seulement quand il est en petit
-document.querySelector('.Noé').addEventListener('click', function() {
-  if (stylesSwapped) { // Seulement si les styles sont échangés
-    handleClick2(); // Change l'image
-    swapStyles(); // Échange les styles
-  }
-});
-
-function handleClick() {
-  document.querySelector('.right-image').style.display = 'none';
-  document.querySelector('.Genius').style.display = 'block';
-  document.querySelector('.noway3').classList.add('shifted'); // Décalage
-}
-
-function handleClick2() { 
-  document.querySelector('.right-image').style.display = 'block';
-  document.querySelector('.Genius').style.display = 'none';
-  document.querySelector('.noway3').classList.remove('shifted'); // Retour à la position normale
-}
-
-
 
 
 
